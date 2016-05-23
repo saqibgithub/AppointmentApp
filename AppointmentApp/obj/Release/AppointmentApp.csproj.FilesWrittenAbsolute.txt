@@ -1,0 +1,10 @@
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/obj/Release/.NETPortable,Version=v4.5,Profile=Profile78.AssemblyAttribute.cs
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/bin/Release/AppointmentApp.dll.mdb
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/bin/Release/AppointmentApp.dll
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/obj/Release/AppointmentApp.dll
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/obj/Release/AppointmentApp.dll.mdb
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/bin/Release/Xamarin.Forms.Core.dll
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/bin/Release/Xamarin.Forms.Xaml.dll
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/bin/Release/Xamarin.Forms.Platform.dll
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/bin/Release/Newtonsoft.Json.dll
+/Users/Saqib/Projects/AppointmentApp/AppointmentApp/bin/Release/Xamarin.Forms.Maps.dll
