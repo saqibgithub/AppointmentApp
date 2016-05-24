@@ -61,7 +61,7 @@ namespace AppointmentApp.Views.Cells
 			//*** DOCTORNAME LABEL
 			_doctorName = new Label {
 				VerticalTextAlignment = TextAlignment.Center,
-				HorizontalOptions = LayoutOptions.End
+				HorizontalOptions = LayoutOptions.EndAndExpand
 			};
 			_doctorName.Text = "doctname";
 
@@ -69,11 +69,18 @@ namespace AppointmentApp.Views.Cells
 			tapGesture.Tapped += DoctorNameTapped;
 			_doctorName.GestureRecognizers.Add (tapGesture);
 
+
+			var sublayout = new StackLayout {
+				Orientation = StackOrientation.Horizontal,
+				HorizontalOptions = LayoutOptions.StartAndExpand,
+				Children = { _dateLabel, divider1, _timeLabel, divider2 }
+			};
+
 			var layout = new StackLayout {
 				Padding = new Thickness (20, 0, 20, 0),
 				Orientation = StackOrientation.Horizontal,
-				HorizontalOptions = LayoutOptions.StartAndExpand,
-				Children = { _dateLabel, divider1,_timeLabel,divider2,_doctorName }
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				Children = { sublayout,_doctorName }
 			};
 
 			View = layout;
