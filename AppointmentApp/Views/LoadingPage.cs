@@ -11,7 +11,7 @@ namespace AppointmentApp.Views
 				VerticalOptions = LayoutOptions.Center,
 				Children = {
 					new Label {
-						XAlign = TextAlignment.Center,
+						HorizontalTextAlignment = TextAlignment.Center,
 						Text = "Loading..."
 					},
 					new ActivityIndicator {
