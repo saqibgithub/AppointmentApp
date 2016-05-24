@@ -102,27 +102,24 @@ namespace AppointmentApp
 				_streetAddress.Text = doctor.Street;
 				_postalCodeAddress.Text = doctor.PostalCode + " " + doctor.City;
 
-				string address = doctor.Street + " "+ doctor.PostalCode+" "+doctor.City;
-
 				Geocoder gecoder = new Geocoder ();
+				string address = doctor.Street + " "+ doctor.PostalCode+" "+doctor.City;
 				var positions  = await gecoder.GetPositionsForAddressAsync(address);
-
 				List<Position> positionsArr = positions.ToList();
 
-				if ( positionsArr.Count > 0 ) {
+				if ( positionsArr.Count > 0  ) {
 					Position position = positionsArr[0]; // Latitude, Longitude
 				
 					var mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromMiles(0.3));
-
-					var pin = new Pin {
+					var mapPin = new Pin {
 						Type = PinType.Place,
 						Position = position,
 						Label = "custom pin",
 						Address = "custom detail info"
 					};
 					_map.MoveToRegion(mapSpan);
-					_map.Pins.Add(pin);
-				}
+					_map.Pins.Add(mapPin);
+				} 
 				
 			} catch (Exception e ) {
 				System.Diagnostics.Debug.WriteLine ("EXception in Doctor Page OnBindingContextChanged,, {0}", e.ToString ());
