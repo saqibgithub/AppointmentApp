@@ -4,6 +4,9 @@ namespace AppointmentApp.Constants
 {
 	public  class Constants
 	{
+		public static string USER_ID = "1";
+		public static string PARAM_ID = "id";
+		public static string APP_SERVER_URL = "http://service.appointments.com/";
 		public static string MESSEGE_CENTER_OPEN_DOCTOR_PAGE = "MESSEGE_CENTER_OPEN_DOCTOR_PAGE";
 		public static string JSON_APPOINTMENTS= @"[
   {

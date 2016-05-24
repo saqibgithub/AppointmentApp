@@ -53,15 +53,23 @@ namespace AppointmentApp.Managers
 		/// <summary>
 		/// Loads the appointments.
 		/// </summary>
-		public void LoadAppointments () {
-
+		public void LoadAppointmentsWithJson (string jsonString) {
 			try { 
-				_appointments = JArray.Parse (Constants.Constants.JSON_APPOINTMENTS).ToObject<List<AppointmentModel>> ();
+				_appointments.Clear();
+				_appointments = JArray.Parse (jsonString).ToObject<List<AppointmentModel>> ();
 			} catch (Exception e) {
 				System.Diagnostics.Debug.WriteLine ("Exception in parsing appointment models = {0}",e.ToString());
 			}
+		}
 
-
+		/// <summary>
+		/// Determines whether this instance is appointments loaded.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is appointments loaded; otherwise, <c>false</c>.</returns>
+		public bool IsAppointmentsLoaded {
+			get {
+				return _appointments.Count > 0;
+			}
 		}
 
 	}

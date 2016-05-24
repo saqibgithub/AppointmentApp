@@ -43,6 +43,8 @@
     <Compile Include="Views\DoctorPage.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Views\Cells\TextCell.cs" />
+    <Compile Include="Interfaces\INetworkFetcherInterface.cs" />
+    <Compile Include="Handlers\NetworkHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -52,6 +54,8 @@
     <Folder Include="Models\" />
     <Folder Include="Managers\" />
     <Folder Include="Common\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -68,6 +72,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Maps">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.2.0.31\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\MonoTouch10\RestSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
