@@ -73,6 +73,15 @@ namespace AppointmentApp
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
+			var position = new Position(37,-122); // Latitude, Longitude
+			var pin = new Pin {
+				Type = PinType.Place,
+				Position = position,
+				Label = "custom pin",
+				Address = "custom detail info"
+			};
+			map.Pins.Add(pin);
+
 
 			StackLayout finalStack = new StackLayout {
 				Spacing = 10,
