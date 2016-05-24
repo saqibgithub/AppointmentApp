@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using AppointmentApp.Models;
@@ -12,6 +14,8 @@ namespace AppointmentApp
 
 		Label _streetAddress;
 		Label _postalCodeAddress;
+
+		Map _map;
 
 		public DoctorPage ()
 		{
@@ -64,31 +68,19 @@ namespace AppointmentApp
 			};
 
 
-			var map = new Map(
-				MapSpan.FromCenterAndRadius(
-					new Position(37,-122), Distance.FromMiles(0.3))) {
+			_map = new Map () {
 				IsShowingUser = true,
 				HeightRequest = 100,
 				WidthRequest = 960,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
-
-			var position = new Position(37,-122); // Latitude, Longitude
-			var pin = new Pin {
-				Type = PinType.Place,
-				Position = position,
-				Label = "custom pin",
-				Address = "custom detail info"
-			};
-			map.Pins.Add(pin);
-
-
+	
 			StackLayout finalStack = new StackLayout {
 				Spacing = 10,
 				Padding = 20,
 				Orientation = StackOrientation.Vertical,
 				VerticalOptions = LayoutOptions.StartAndExpand,
-				Children = { nameStackLayout ,openingHoursStackLayout,addressLayout,map }
+				Children = { nameStackLayout ,openingHoursStackLayout,addressLayout,_map }
 			};
 
 			Content = finalStack;
@@ -98,7 +90,7 @@ namespace AppointmentApp
 		/// Override this method to execute an action when the BindingContext changes.
 		/// </summary>
 		/// <remarks></remarks>
-		protected override void OnBindingContextChanged () {
+		protected async override void OnBindingContextChanged () {
 			base.OnBindingContextChanged ();
 
 			try {
@@ -109,11 +101,43 @@ namespace AppointmentApp
 
 				_streetAddress.Text = doctor.Street;
 				_postalCodeAddress.Text = doctor.PostalCode + " " + doctor.City;
+
+				string address = doctor.Street + " "+ doctor.PostalCode+" "+doctor.City;
+
+				Geocoder gecoder = new Geocoder ();
+				var positions  = await gecoder.GetPositionsForAddressAsync(address);
+
+				List<Position> positionsArr = positions.ToList();
+
+				if ( positionsArr.Count > 0 ) {
+					Position position = positionsArr[0]; // Latitude, Longitude
+				
+					var mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromMiles(0.3));
+
+					var pin = new Pin {
+						Type = PinType.Place,
+						Position = position,
+						Label = "custom pin",
+						Address = "custom detail info"
+					};
+					_map.MoveToRegion(mapSpan);
+					_map.Pins.Add(pin);
+				}
 				
 			} catch (Exception e ) {
 				System.Diagnostics.Debug.WriteLine ("EXception in Doctor Page OnBindingContextChanged,, {0}", e.ToString ());
 			}
 		}
+
+		/// <summary>
+		/// Raises the appearing event.
+		/// </summary>
+//		protected override void OnAppearing () {
+//			base.OnAppearing ();
+//
+//
+//		
+//		}
 
 		/// <summary>
 		/// Application developers can override this method to provide behavior when the back button is pressed.
