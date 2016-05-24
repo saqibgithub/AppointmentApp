@@ -63,9 +63,9 @@ namespace AppointmentApp.Managers
 		/// <summary>
 		/// Loads the doctors.
 		/// </summary>
-		public void LoadDoctors () {
+		public void LoadDoctorsWithJson (string json) {
 			try { 
-				_doctors = JArray.Parse (Constants.Constants.JSON_DOCTORS).ToObject<List<DoctorModel>>();
+				_doctors = JArray.Parse (json).ToObject<List<DoctorModel>>();
 				BuildDoctorsMap ();
 
 			} catch (Exception e) {
@@ -96,6 +96,17 @@ namespace AppointmentApp.Managers
 			}
 			return null;
 		}
+
+		/// <summary>
+		/// Ises the doctor already loaded.
+		/// </summary>
+		/// <returns><c>true</c>, if doctor already loaded was ised, <c>false</c> otherwise.</returns>
+		/// <param name="doctorId">Doctor identifier.</param>
+		public bool isDoctorAlreadyLoaded (string doctorId)  {
+			return GetModelById (doctorId) != null;
+		}
+
+			
 	}
 }
 

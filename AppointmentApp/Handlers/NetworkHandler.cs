@@ -10,8 +10,6 @@ using RestSharp;
 using AppointmentApp.Interfaces;
 using AppointmentApp.Constants;
 
-
-
 namespace AppointmentApp.Handlers
 {
 	public class NetworkHandler
@@ -37,7 +35,7 @@ namespace AppointmentApp.Handlers
 		/// <summary>
 		/// Get this instance.
 		/// </summary>
-		public async void GetAppointments (bool isSuccess) {
+		public async void GetJsonData (bool isSuccess, string jsonStr) {
 			await Task.Delay (5000);
 			Task.Run (() => {   
 
@@ -62,7 +60,7 @@ namespace AppointmentApp.Handlers
 						if (!isSuccess && ( response == null || response.Content == null || response.Content.CompareTo ("") == 0)) {
 							_delegate?.onFailure ("Some Error Occured",_requestTag);
 						} else {
-							_delegate.onSuccess(Constants.Constants.JSON_APPOINTMENTS , _requestTag);
+							_delegate.onSuccess(jsonStr , _requestTag);
 						}
 					} catch (Exception e) {
 						System.Diagnostics.Debug.WriteLine("Exception in network response handling Exception = {0}",e.ToString());

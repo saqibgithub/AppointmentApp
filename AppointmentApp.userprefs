@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="Droid/AppointmentApp.Droid.csproj">
+﻿<Properties StartupItem="iOS/AppointmentApp.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.0123456789ABCDEF" />
   <MonoDevelop.Ide.Workbench ActiveDocument="AppointmentApp/Handlers/MANetworkFetcher.cs">
     <Files>

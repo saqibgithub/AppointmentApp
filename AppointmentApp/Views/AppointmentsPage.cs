@@ -26,8 +26,6 @@ namespace AppointmentApp.Views
 		/// The activity indicator.
 		/// </summary>
 		private StackLayout _activityIndicatorStack;
-	
-
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AppointmentApp.AppointmentsPage"/> class.
@@ -92,18 +90,15 @@ namespace AppointmentApp.Views
 		protected override void OnAppearing() {
 			base.OnAppearing ();
 
-			//TODO: load them in loading view or from parsing
-			//AppointmentsDataManager.Instance.LoadAppointments ();
-			DoctorsDataManager.Instance.LoadDoctors ();
-		
+			DoctorsDataManager.Instance.LoadDoctorsWithJson (Constants.Constants.JSON_DOCTORS);
+
 			MessagingCenter.Subscribe<AppointmentCell, AppointmentModel> (this, Constants.Constants.MESSEGE_CENTER_OPEN_DOCTOR_PAGE, (sender  ,appointmentModel) =>  {
-				DoctorModel doctor = DoctorsDataManager.Instance.GetModelById(appointmentModel.DoctorId);
+				//DoctorModel doctor = DoctorsDataManager.Instance.GetModelById(appointmentModel.DoctorId);
 				var doctorPage = new DoctorPage();
-				doctorPage.BindingContext = doctor;
+				doctorPage.DoctorId = appointmentModel.DoctorId;
 				 Navigation.PushAsync(doctorPage,true);
 			
 			});
-
 
 			/// IF appointments are not already loaded
 			if (!AppointmentsDataManager.Instance.IsAppointmentsLoaded) {
@@ -114,7 +109,7 @@ namespace AppointmentApp.Views
 				Dictionary<string,string> networkParms = new Dictionary<string,string> ();
 				networkParms.Add (Constants.Constants.PARAM_ID, Constants.Constants.USER_ID);
 				_networkHandler = new NetworkHandler ("users/{id}/appointments", networkParms, this, 1);
-				_networkHandler.GetAppointments (true);
+				_networkHandler.GetJsonData (true, Constants.Constants.JSON_APPOINTMENTS);
 			}
 		}
 
