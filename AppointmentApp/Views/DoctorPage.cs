@@ -134,7 +134,7 @@ namespace AppointmentApp
 
 			Content =  new StackLayout {
 				Orientation = StackOrientation.Vertical,
-				VerticalOptions = LayoutOptions.StartAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
 				Children = { _dataStack,_activityIndicatorStack }
 			};;
 		}
