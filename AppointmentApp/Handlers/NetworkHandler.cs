@@ -9,6 +9,7 @@ using RestSharp;
 
 using AppointmentApp.Interfaces;
 using AppointmentApp.Constants;
+using AppointmentApp.DependencyInterfaces;
 
 namespace AppointmentApp.Handlers
 {
@@ -36,6 +37,14 @@ namespace AppointmentApp.Handlers
 		/// Get this instance.
 		/// </summary>
 		public async void GetJsonData (bool isSuccess, string jsonStr) {
+
+			/// CHECK FOR Network unavailablity ?
+			if (!DependencyService.Get<INetworkDependencyInterface> ().isConnected ()) {
+				if (_delegate != null)
+					_delegate.onFailure ("Network not connected",_requestTag);
+				return;
+			}
+
 			await Task.Delay (5000);
 			Task.Run (() => {   
 
